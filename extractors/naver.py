@@ -2,8 +2,11 @@ from requests import get
 from bs4 import BeautifulSoup
 
 def extract_naver_news(keyword):
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+}
     url = f"https://search.naver.com/search.naver?where=news&query={keyword}&sm=tab_opt&sort=1&photo=0&field=0&pd=4&ds=&de=&docid=&related=0&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so:dd,p:1d&is_sug_officeid=0&office_category=0&service_area=0"
-    response = get(url)
+    response = get(url, headers=headers)
     print(response)
     if response.status_code != 200:
         print("Can't request naver news")
